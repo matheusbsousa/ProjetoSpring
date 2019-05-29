@@ -5,10 +5,11 @@
     <persistence-unit name="ProjetoSpringPersistence" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/ProjetoSpring?currentSchema=ProjetoSpring" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/ProjetoSpring" />
+            <property name="hibernate.default_schema" value="spring"/>
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <property name="javax.persistence.jdbc.password" value="admin" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
         </properties>
     </persistence-unit>
 </persistence>
