@@ -1,4 +1,4 @@
-package com.projeto.springbasic.resources.exception;
+package com.projeto.springbasic.controllers.exception;
 
 import com.projeto.springbasic.services.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;

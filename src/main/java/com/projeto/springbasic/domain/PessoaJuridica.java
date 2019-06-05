@@ -1,29 +1,37 @@
 package com.projeto.springbasic.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-public class PessoaJuridica extends Pessoa implements Serializable {
+@Table(name = "PESSOA_JURIDICA")
+public class PessoaJuridica  implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID_PESSOAJURIDICA")
     private Integer id;
 
+    @Column(name = "CNPJ")
     private String cnpj;
 
+    @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoa_id")
+    @JoinColumn(name = "PESSOA_ID_PESSOAJURIDICA")
     private Pessoa pessoa;
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    @Override
     public void setId(Integer id) {
         this.id = id;
     }
@@ -41,6 +49,12 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     }
 
     public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public PessoaJuridica(Integer id, String cnpj, Pessoa pessoa) {
+        this.id = id;
+        this.cnpj = cnpj;
         this.pessoa = pessoa;
     }
 }

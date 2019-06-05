@@ -10,12 +10,18 @@ public class Telefone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID_TELEFONE")
     private Integer id;
+
+    @Column(name = "DDD")
     private String ddd;
+
+    @Column(name = "NUMERO")
     private String numero;
 
     @JsonManagedReference
     @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PESSOA")
     private Pessoa pessoa;
 
     public Telefone() {

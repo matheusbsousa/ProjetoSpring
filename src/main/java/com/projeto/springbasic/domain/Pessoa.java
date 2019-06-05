@@ -10,24 +10,29 @@ import java.util.List;
 
 
 @Entity
-public abstract class Pessoa implements Serializable {
+@Table(name = "PESSOA")
+public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID_PESSOA")
     private Integer id;
 
+    @Column(name = "NOME")
     private String nome;
-
-    private String sobrenome;
 
     @JsonBackReference
     @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private List<Telefone> telefones = new ArrayList<>();
 
-    public Pessoa(Integer id, String nome, String sobrenome) {
+    @JoinColumn(name = "PESSOA_ID_ENDERECO")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Endereco endereco;
+
+    public Pessoa(Integer id, String nome, Endereco endereco) {
         this.id = id;
         this.nome = nome;
-        this.sobrenome = sobrenome;
+        this.endereco = endereco;
     }
 
     public Pessoa() {
@@ -49,14 +54,6 @@ public abstract class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
     public List<Telefone> getTelefones() {
         return telefones;
     }
@@ -65,12 +62,19 @@ public abstract class Pessoa implements Serializable {
         this.telefones = telefones;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public String toString() {
         return "Pessoa{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
                 '}';
     }
 }

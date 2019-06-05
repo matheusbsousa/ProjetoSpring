@@ -1,4 +1,4 @@
-package com.projeto.springbasic.resources;
+package com.projeto.springbasic.controllers;
 
 
 import com.projeto.springbasic.domain.Pessoa;
@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "/pessoas")
 public class PessoaResource {
@@ -22,7 +19,6 @@ public class PessoaResource {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable  Integer id){
-
         Pessoa pessoa = pessoaService.find(id);
 
         return ResponseEntity.ok().body(pessoa);

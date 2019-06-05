@@ -1,4 +1,4 @@
-package com.projeto.springbasic.resources.exception;
+package com.projeto.springbasic.controllers.exception;
 
 import java.io.Serializable;
 

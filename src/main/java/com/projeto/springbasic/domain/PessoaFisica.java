@@ -3,32 +3,36 @@ package com.projeto.springbasic.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class PessoaFisica extends Pessoa implements Serializable {
+@Table(name = "PESSOA_FISICA")
+public class PessoaFisica implements Serializable {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID_PESSOAFISICA")
     private Integer id;
 
+    @Column(name = "CPF")
     private String cpf;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "DATA_NASCIMENTO")
     private Date dataNascimento;
 
-    @OneToOne
-    @JoinColumn(name = "pessoa_id")
+    @NotNull
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PESSOA_ID_PESSOAFISICA")
     private Pessoa pessoa;
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    @Override
     public void setId(Integer id) {
         this.id = id;
     }
@@ -57,8 +61,8 @@ public class PessoaFisica extends Pessoa implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public PessoaFisica(Integer id, String nome, String sobrenome, String cpf, Date dataNascimento, Pessoa pessoa) {
-        super(id, nome, sobrenome);
+    public PessoaFisica(Integer id, String cpf, Date dataNascimento, Pessoa pessoa) {
+        this.id = id;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.pessoa = pessoa;
