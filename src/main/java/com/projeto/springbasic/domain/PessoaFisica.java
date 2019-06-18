@@ -67,4 +67,7 @@ public class PessoaFisica implements Serializable {
         this.dataNascimento = dataNascimento;
         this.pessoa = pessoa;
     }
+
+    public PessoaFisica() {
+    }
 }

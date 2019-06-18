@@ -55,13 +55,19 @@ public class SpringbasicApplication implements CommandLineRunner {
 
         Endereco end = new Endereco(null, 700000, "Sobradinho", "NaN", "100",est1, "NaN");
 
-        Pessoa p1 = new Pessoa(null, "Matheus", end);
+        Pessoa p1 = new Pessoa(null, "Matheus1", end);
+        Pessoa p2 = new Pessoa(null, "Matheus2", end);
+        Pessoa p3 = new Pessoa(null, "Matheus3", end);
+        Pessoa p4 = new Pessoa(null, "Matheus4", end);
+        Pessoa p5 = new Pessoa(null, "Matheus5", end);
+        Pessoa p6 = new Pessoa(null, "Matheus6", end);
+        Pessoa p7 = new Pessoa(null, "Matheus7", end);
 
         PessoaFisica pf1 = new PessoaFisica(null, "05217219114", sdf.parse("12/12/2012"), p1);
 
         estadoRepository.save(est1);
         enderecoRepository.save(end);
-        pessoaRepository.save(p1);
+        pessoaRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7));
         pessoaFisicaRepository.save(pf1);
 
 

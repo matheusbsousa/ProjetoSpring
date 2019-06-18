@@ -1,9 +1,19 @@
 package com.projeto.springbasic.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projeto.springbasic.dto.PessoaDTO;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +31,7 @@ public class Pessoa implements Serializable {
     @Column(name = "NOME")
     private String nome;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private List<Telefone> telefones = new ArrayList<>();
 
@@ -76,5 +86,10 @@ public class Pessoa implements Serializable {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 '}';
+    }
+
+    public Pessoa(PessoaDTO pessoaDTO){
+        this.setId(pessoaDTO.getId());
+        this.setNome(pessoaDTO.getNome());
     }
 }
