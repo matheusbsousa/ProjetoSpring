@@ -72,7 +72,4 @@ public class PessoaController {
         Page<PessoaDTO> listPagePessoaDTO = listPagePessoa.map(o-> new PessoaDTO(o));
         return ResponseEntity.ok().body(listPagePessoaDTO);
     }
-
-
-
 }

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -91,5 +92,9 @@ public class Pessoa implements Serializable {
     public Pessoa(PessoaDTO pessoaDTO){
         this.setId(pessoaDTO.getId());
         this.setNome(pessoaDTO.getNome());
+        this.setEndereco(pessoaDTO.getEndereco());
+
+        if(Objects.nonNull(pessoaDTO.getEndereco()) && Objects.nonNull(pessoaDTO.getEndereco().getId())){
+        }
     }
 }

@@ -1,9 +1,11 @@
 package com.projeto.springbasic.dto;
 
+import com.projeto.springbasic.domain.Endereco;
 import com.projeto.springbasic.domain.Pessoa;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class PessoaDTO implements Serializable {
@@ -13,6 +15,9 @@ public class PessoaDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório!!!")
     @Length(min = 5, max = 80, message = "O tamanho do campo deve estar entre 5 e 80 caracteres")
     private String nome;
+
+    @NotNull
+    private Endereco endereco;
 
     public Integer getId() {
         return id;
@@ -41,5 +46,13 @@ public class PessoaDTO implements Serializable {
     public PessoaDTO(Pessoa pessoa){
         this.id = pessoa.getId();
         this.nome = pessoa.getNome();
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
